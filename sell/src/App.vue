@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <router-view/>
+    <div class="header">
+      I am header
+    </div>
     <div class="tab">
       I am tab
     </div>
