@@ -2,12 +2,12 @@
   <div id="app">
     <router-view/>
     <div class="tab">
-      <div class="tab-item">商品</div>
-      <div class="tab-item">评价</div>
-      <div class="tab-item">商家</div>
-    </div>
-    <div class="content">
-      I am content
+      <div class="tab-item"><a router-link="{path:'/goods'}">商品</a></div>
+      <div class="tab-item"><a router-link="{path:'/ratings'}">评价</a></div>
+      <div class="tab-item"><a router-link="{path:'/seller'}">商家</a></div>
+      <!-- <div class="tab-item"><router-link to="/goods">商品</router-link></div>
+      <div class="tab-item"><router-link to="/goods">评价</router-link></div>
+      <div class="tab-item"><router-link to="/goods">商家</router-link></div> -->
     </div>
   </div>
 </template>
