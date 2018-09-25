@@ -1,10 +1,10 @@
 <template>
   <div id="app">
-    <div class="header">
-      I am header
-    </div>
+    <router-view/>
     <div class="tab">
-      I am tab
+      <div class="tab-item">商品</div>
+      <div class="tab-item">评价</div>
+      <div class="tab-item">商家</div>
     </div>
     <div class="content">
       I am content
@@ -18,6 +18,15 @@
   }
 </script>
 
-<style>
-
+<style scoped>
+  .tab{
+    display: flex;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+  }
+  .tab-item{
+    flex: 1;
+    text-align: center;
+  }
 </style>
