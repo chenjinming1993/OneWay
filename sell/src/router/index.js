@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 // import HelloWorld from '@/components/HelloWorld'
-import Sellheader from '../components/header/Sellheader'
+// import Sellheader from '../components/header/Sellheader'
 import goods from '../components/table/goods'
 import ratings from '../components/table/ratings'
 import seller from '../components/table/seller'
@@ -9,11 +9,11 @@ import seller from '../components/table/seller'
 Vue.use(Router)
 
 export default new Router({
+  linkActiveClass: 'active',
   routes: [
     {
-      path: '/Sellheader',
-      name: 'Sellheader',
-      component: Sellheader
+      path: '/',
+      redirect: 'goods'
     },
     {
       path: '/goods',
