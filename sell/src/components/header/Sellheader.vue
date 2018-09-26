@@ -5,7 +5,7 @@
 
 <script>
 export default {
-  name: 'Header',
+  name: 'Sellheader',
   data () {
       return {
 
@@ -14,5 +14,5 @@ export default {
 }
 
 </script>
-<style lang='scss' scoped>
+<style scoped>
 </style>

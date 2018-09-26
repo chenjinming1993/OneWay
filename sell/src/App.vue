@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <!-- <router-view/> -->
+    <Sellheader></Sellheader>
     <div class="tab">
       <div class="tab-item"><router-link to="/goods">商品</router-link></div>
       <div class="tab-item"><router-link to="/ratings">评价</router-link></div>
@@ -11,8 +12,12 @@
 </template>
 
 <script>
+  import Sellheader from './components/header/Sellheader'
   export default {
-    name: 'App'
+    name: 'App',
+    components: {
+      Sellheader
+    }
   }
 </script>
 
