@@ -6,6 +6,8 @@ import goods from '../components/table/goods'
 import ratings from '../components/table/ratings'
 import seller from '../components/table/seller'
 
+import '../common/stylus/index.styl'
+
 Vue.use(Router)
 
 export default new Router({
