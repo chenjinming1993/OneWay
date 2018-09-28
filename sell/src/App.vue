@@ -11,9 +11,25 @@
   </div>
 </template>
 
-<script>
+<script type="text/ecmascript-6">
   import Sellheader from './components/header/Sellheader'
+
+  const ERR_OK = 0
   export default {
+    data() {
+      return {
+        seller: {}
+      }
+    },
+    created() {
+      this.$http.get('/api/seller').then((response) => {
+        response = response.body
+        if (response.errno === ERR_OK) {
+          this.seller = response.data
+          console.log(this.seller)
+        }
+      })
+    },
     name: 'App',
     components: {
       Sellheader
