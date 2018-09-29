@@ -44,11 +44,13 @@ export default {
   }
   .content-wrapper{
     padding: 24px 16px 18px 24px;
+    font-size: 0;
   }
   .avatar{
     display: inline-block;
   }
   .content{
     display: inline-block;
+    font-size: 14px;
   }
 </style>
