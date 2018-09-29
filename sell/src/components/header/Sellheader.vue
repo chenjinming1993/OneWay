@@ -5,6 +5,17 @@
       <div class="avatar">
         <img width="64px" height="64px" :src="seller.avatar">
       </div>
+      <div class="content">
+        <div class="title">
+          <span class="brand"></span>
+          <span class="name">{{seller.name}}</span>
+        </div>
+        <div class="description">{{seller.description}}/{{seller.deliveryTime}}分钟送达</div>
+        <div v-if="seller.supports" class="support">
+          <span class="icon"></span>
+          <span class="text">{{seller.supports[0].description}}</span>
+        </div>
+      </div>
     </div>
     <div class="bulletin-wrapper"></div>
   </div>
@@ -27,4 +38,17 @@ export default {
 
 </script>
 <style scoped>
+  .header{
+    background: blue;
+    color: white;
+  }
+  .content-wrapper{
+    padding: 24px 16px 18px 24px;
+  }
+  .avatar{
+    display: inline-block;
+  }
+  .content{
+    display: inline-block;
+  }
 </style>
