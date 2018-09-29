@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <!-- <router-view/> -->
-    <Sellheader></Sellheader>
+    <Sellheader :seller="seller"></Sellheader>
     <div class="tab">
       <div class="tab-item"><router-link to="/goods">商品</router-link></div>
       <div class="tab-item"><router-link to="/ratings">评价</router-link></div>
@@ -24,10 +24,10 @@
     created() {
       this.$http.get('/api/seller').then((response) => {
         response = response.body
-        console.log(response)
+        // console.log(response)
         if (response.errno === ERR_OK) {
           this.seller = response.data
-          console.log(this.seller)
+          // console.log(this.seller)
         }
       })
     },
