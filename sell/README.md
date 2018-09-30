@@ -7,6 +7,10 @@
 ``` bash
 # install dependencies
 npm install
+npm install vue-router --save
+npm install stylus --save-dev
+npm install stylus-loader --save-dev
+
 
 # serve with hot reload at localhost:8080
 npm run dev
