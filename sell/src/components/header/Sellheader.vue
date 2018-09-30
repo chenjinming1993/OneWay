@@ -37,7 +37,8 @@ export default {
 }
 
 </script>
-<style scoped>
+<style lang="stylus">
+  @import "../../common/stylus/mixin.styl";
   .header{
     background: blue;
     color: white;
@@ -48,9 +49,41 @@ export default {
   }
   .avatar{
     display: inline-block;
+    vertical-align: top;
+  }
+  .avatar img{
+    border-radius: 2px;
   }
   .content{
     display: inline-block;
-    font-size: 14px;
+    // font-size: 14px;
+    margin-left: 16px;
+  }
+  .title{
+    margin: 2px 0 8px 0;
+  }
+  .brand{
+    width: 30px;
+    height: 18px;
+    display: inline-block;
+    bg-image('brand');
+    background-size: 30px 18px;
+    background-repeat: no-repeat;
+    vertical-align: top;
+  }
+  .name{
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 18px;
+    margin-left: 6px;
+  }
+  .description{
+    margin-bottom: 10px;
+    font-size: 12px;
+    // font-weight: 200;
+    line-height: 12px;
+  }
+  .support{
+    // margin: 10px 0 2px 0;
   }
 </style>
