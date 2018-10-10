@@ -25,6 +25,9 @@
       <span class="bulletin-title"></span><span class="bulletin-text">{{seller.bulletin}}</span>
       <i class="icon-keyboard_arrow_right"></i>
     </div>
+    <div class="background">
+      <img :src="seller.avatar" width="100%" height="100%">
+    </div>
   </div>
 </template>
 
@@ -50,7 +53,8 @@ export default {
 <style lang="stylus">
   @import "../../common/stylus/mixin.styl";
   .header{
-    background: #999;
+    position: relative;
+    background: rgba(7,17,27,0.5);
     color: white;
   }
   .content-wrapper{
@@ -175,6 +179,15 @@ export default {
     position absolute;
     font-size: 10px;
     right: 12px;
-    top: 4px;
+    top: 3px;
+  }
+  .background{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    filter: blur(10px);
   }
 </style>
