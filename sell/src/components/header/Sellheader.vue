@@ -30,9 +30,11 @@
     </div>
     <div v-show="detailShow" class="detail">
       <div class="detail-wrapper clearfix">
-        <div class="detail-main"></div>
+        <div class="detail-main">
+          <h1 class="name">{{seller.name}}</h1>
+        </div>
       </div>
-      <div class="detail-close">
+      <div class="detail-close" @click="closeDetail">
         <i class="icon-close"></i>
       </div>
     </div>
@@ -55,6 +57,9 @@ export default {
   methods: {
     showDetail() {
       this.detailShow = true
+    },
+    closeDetail() {
+      this.detailShow = false
     }
   },
   created() {
@@ -216,10 +221,17 @@ export default {
   }
   .detail-wrapper{
     min-height: 100%;
+    width: 100%;
   }
   .detail-main{
     margin-top: 64px;
     padding-bottom: 64px;
+  }
+  .detail-main .name{
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 16px;
+    text-align: center;
   }
   .detail-close{
     position: relative;
