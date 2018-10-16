@@ -42,6 +42,7 @@
 </template>
 
 <script>
+  import star from '././components/star/star'//引入组件出错
 export default {
   name: 'Sellheader',
   props: {
