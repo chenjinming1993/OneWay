@@ -23,6 +23,10 @@
     computed: {
       starType() {
         return 'star-' + this.size
+      },
+      itemClasses() {
+        let result = [];
+        let score = Math.floor(this.size*2)/2;
       }
     }
   }
