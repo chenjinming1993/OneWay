@@ -1,7 +1,7 @@
 <!--  -->
 <template>
   <div class="star" :class="starType">
-      <span v-for="itemClass in itemClasses" :class="itemClass" class="star-item"></span>
+      <span v-for="itemClass in itemClasses" :key="itemClass" :class="itemClass" class="star-item"></span>
   </div>
 </template>
 
@@ -26,7 +26,19 @@
       },
       itemClasses() {
         let result = [];
-        let score = Math.floor(this.size*2)/2;
+        let score = Math.floor(this.size * 2) / 2; // 回退处
+        let hasDecimal = score % 1 !== 0;
+        let integer = Math.floor(score);
+        for (let i = 0; i < integer; i++) {
+          result.push(CLS_ON);
+        }
+        if (hasDecimal) {
+          result.push(CLS_HALF);
+        }
+        while (result.length < LENGTH) {
+          result.push(CLS_OFF);
+        }
+        return result;
       }
     }
   }
@@ -77,5 +89,4 @@
         bg-image('star24_half')
       &.off
         bg-image('star24_off')
-    
 </style>
