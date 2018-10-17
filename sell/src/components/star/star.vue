@@ -1,7 +1,7 @@
 <!--  -->
 <template>
   <div class="star" :class="starType">
-      <span v-for="itemClass in itemClasses" :key="itemClass" :class="itemClass" class="star-item"></span>
+      <span v-for="(itemClass,index) in itemClasses" :key="index" :class="itemClass" class="star-item"></span>
   </div>
 </template>
 
@@ -26,7 +26,7 @@
       },
       itemClasses() {
         let result = [];
-        let score = Math.floor(this.size * 2) / 2; // 回退处
+        let score = Math.floor(this.score * 2) / 2; // 回退处
         let hasDecimal = score % 1 !== 0;
         let integer = Math.floor(score);
         for (let i = 0; i < integer; i++) {
@@ -38,12 +38,13 @@
         while (result.length < LENGTH) {
           result.push(CLS_OFF);
         }
+        console.log(result);
         return result;
       }
     }
   }
 </script>
-<style lang='stylus' scoped>
+<style lang='stylus' rel="stylesheet/stylus">
   @import "../../common/stylus/mixin.styl"
   .star
     font-size: 0
@@ -53,10 +54,10 @@
     &.star-48
       width: 20px
       height: 20px
-      background-size 20px 20px
-      margin-right 22px
+      background-size: 20px 20px
+      margin-right: 22px
       &:last-child
-        margin-right 0
+        margin-right: 0
       &.on
         bg-image('star48_on')
       &.half
@@ -66,10 +67,10 @@
     &.star-36
       width: 15px
       height: 15px
-      background-size 15px 15px
-      margin-right 6px
+      background-size: 15px 15px
+      margin-right: 6px
       &:last-child
-        margin-right 0
+        margin-right: 0
       &.on
         bg-image('star36_on')
       &.half
@@ -79,10 +80,10 @@
     &.star-24
       width: 10px
       height: 10px
-      background-size 10px 10px
-      margin-right 3px
+      background-size: 10px 10px
+      margin-right: 3px
       &:last-child
-        margin-right 0
+        margin-right: 0
       &.on
         bg-image('star24_on')
       &.half
