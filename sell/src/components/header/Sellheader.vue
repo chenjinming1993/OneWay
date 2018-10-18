@@ -46,6 +46,14 @@
               <span class="text">{{seller.supports[index].description}}</span>
             </li>
           </ul>
+          <div class="title">
+            <div class="line"></div>
+            <div class="text">商家公告</div>
+            <div class="line"></div>
+          </div>
+          <div class="bulletin">
+            <p class="detail-content">{{seller.bulletin}}</p>
+          </div>
         </div>
       </div>
       <div class="detail-close" @click="closeDetail">
@@ -271,6 +279,55 @@ export default {
     padding: 0 12px;
     font-size: 14px;
     font-weight: 700;
+  }
+  .detail-main .supports{
+    width: 80%;
+    margin: 0 auto;
+  }
+  .detail-main .supports .supports-item{
+    padding: 0 12px;
+    margin-bottom: 12px;
+    font-size: 0;
+    &:last-child{
+      margin-bottom: 0;
+    }
+  }
+  .detail-main .supports .supports-item .icon{
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    background-size: 16px 16px;
+    background-repeat: no-repeat;
+    margin-right: 6px;
+    vertical-align: top;
+    &.decrease{
+      bg-image('decrease_2');
+    }
+    &.discount{
+      bg-image('discount_2');
+    }
+    &.guarantee{
+      bg-image('guarantee_2')
+    }
+    &.invoice{
+      bg-image('invoice_2')
+    }
+    &.special{
+      bg-image('special_2')
+    }
+  }
+  .detail-main .supports .supports-item .text{
+    font-size: 14px;
+    line-height: 16px;
+  }
+  .detail-main .bulletin{
+    width: 80%;
+    margin: 0 auto;
+  }
+  .detail-main .bulletin .detail-content{
+    font-size: 12px;
+    line-height: 24px;
+    padding: 0 12px;
   }
   .detail-close{
     position: relative;
