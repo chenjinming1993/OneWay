@@ -2,7 +2,7 @@
   <div id="app">
     <!-- <router-view/> -->
     <Sellheader :seller="seller"></Sellheader>
-    <div class="tab">
+    <div class="tab border-1px">
       <div class="tab-item"><router-link to="/goods">商品</router-link></div>
       <div class="tab-item"><router-link to="/ratings">评价</router-link></div>
       <div class="tab-item"><router-link to="/seller">商家</router-link></div>
