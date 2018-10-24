@@ -51,7 +51,8 @@ export default {
   },
   data () {
     return {
-      goods: []
+      goods: [],
+      listHeight: []
     }
   },
   created() {
@@ -62,6 +63,7 @@ export default {
         this.goods = response.data
         this.$nextTick(() => {
           this._initScroll()
+          this._calculateHeight()
         })
       }
     })
@@ -70,6 +72,9 @@ export default {
     _initScroll() {
       this.menuScroll = new BScroll(this.$refs.menuWrapper, {})
       this.foodsScroll = new BScroll(this.$refs.foodsWrapper, {})
+    },
+    _calculateHeight() {
+
     }
   }
 }
