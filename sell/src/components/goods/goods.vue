@@ -75,6 +75,7 @@ export default {
         let height1 = this.listHeight[i]
         let height2 = this.listHeight[i + 1]
         if (!height2 || (this.scrollY >= height1 && this.scrollY < height2)) {
+          this._initLeftScroll(i)
           return i
         }
       }
@@ -114,6 +115,11 @@ export default {
       let ref = foodList[index]
       console.log(index)
       this.foodsScroll.scrollToElement(ref, 300)
+    },
+    _initLeftScroll(index) { // 当右边内容滚动的时候，滚动一定的程度的时候，希望左边也会随着滚动
+      let menuList = this.$refs.menuWrapper.getElementsByClassName('menu-item')
+      let ref = menuList[index]
+      this.menuScroll.scrollToElement(ref, 300)
     }
   }
 }
