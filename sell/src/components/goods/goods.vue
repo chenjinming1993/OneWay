@@ -36,11 +36,13 @@
         </li>
       </ul>
     </div>
+    <shopcart></shopcart>
   </div>
 </template>
 
 <script>
 import BScroll from 'better-scroll'
+import shopcart from '../../components/shopcart/shopcart'
 const ERR_OK = 0
 export default {
   name: 'goods',
@@ -121,6 +123,9 @@ export default {
       let ref = menuList[index]
       this.menuScroll.scrollToElement(ref, 300)
     }
+  },
+  components: {
+    shopcart
   }
 }
 
