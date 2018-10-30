@@ -9,7 +9,7 @@
           </div>
         </div>
         <div class="price">￥0</div>
-        <div class="desc"></div>
+        <div class="desc">另需配送费￥4元</div>
       </div>
       <div class="content-right"></div>
     </div>
@@ -73,7 +73,16 @@ export default {
           font-weight 700
           color rgba(255,255,255,0.4)
           border-right 1px solid rgba(255,255,255,0.4)
-
+        .desc
+          display inline-block
+          vertical-align top
+          margin-top 12px
+          margin-left 12px
+          box-sizing border-box
+          font-size 16px
+          // font-weight 700
+          line-height 24px
+          color rgba(255,255,255,0.4)
       .content-right
         flex 0 0 105px
         width 105px
