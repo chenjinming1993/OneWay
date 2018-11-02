@@ -4,15 +4,16 @@
     <div class="content_sc">
       <div class="content-left">
         <div class="logo-wrapper">
-          <div class="logo">
-            <i class="icon-shopping_cart"></i>
+          <div class="logo" :class="{'highlight':totalCount>0}">
+            <i class="icon-shopping_cart" :class="{'highlight':totalCount>0}"></i>
+            <div class="select-num" v-show="totalCount>0">{{totalCount}}</div>
           </div>
         </div>
-        <div class="price">￥{{totalPrice}}</div>
+        <div class="price" :class="{'highlight':totalPrice>0}">￥{{totalPrice}}</div>
         <div class="desc">另需配送费￥{{deliveryPrice}}元</div>
       </div>
       <div class="content-right">
-        <div class="pay">￥{{minPrice}}起送</div>
+        <div class="pay">{{payDesc}}</div>
       </div>
     </div>
   </div>
@@ -25,10 +26,10 @@ export default {
       type: Array,
       default() {
         return [
-          {
-            price: 10,
-            count: 1
-          }
+          // {
+          //   price: 10,
+          //   count: 1
+          // }
         ]
       }
     },
@@ -53,11 +54,17 @@ export default {
       });
       return total
     },
-    totalSelect() {
+    totalCount() {
       let count = 0
       this.selectFoods.forEach((food) => {
         count += food.count
       })
+      return count
+    },
+    payDesc() {
+      if (this.totalPrice < 0) {
+        return `￥${this.minPrice}起送`
+      }
     }
   }
 }
@@ -96,10 +103,28 @@ export default {
             border-radius 50%
             text-align center
             background #2b343c
+            &.highlight
+              background rgb(0,160,220)
             .icon-shopping_cart
               font-size 24px
               line-height 44px
               color rgba(255,255,255,0.4)
+              &.highlight
+                color #fff
+            .select-num
+              position absolute
+              top 0
+              right 0
+              width 24px
+              height 16px
+              line-height 16px
+              font-size 9px
+              font-weight 700
+              color rgb(255,255,255)
+              background rgb(240,20,20)
+              box-shadow 0 4px 8px 0 rgba(0,0,0,0.4)
+              border-radius 16px
+              // z-z-index 50
         .price
           display inline-block
           vertical-align top
@@ -111,6 +136,8 @@ export default {
           font-weight 700
           color rgba(255,255,255,0.4)
           border-right 1px solid rgba(255,255,255,0.4)
+          &.highlight
+            color #fff
         .desc
           display inline-block
           vertical-align top
