@@ -1,7 +1,7 @@
 <!--  -->
 <template>
   <div class="cartcontrol">
-    <div class="cart-decrease icon-remove_circle_outline"></div>
+    <div class="cart-decrease icon-remove_circle_outline" v-show="food.count>0"></div>
     <div class="cart-count">1</div>
     <div class="cart-add icon-add_circle"></div>
   </div>
@@ -9,6 +9,11 @@
 
 <script>
 export default {
+  props: {
+    food: {
+      type: Object
+    }
+  },
   data () {
     return {
     };
