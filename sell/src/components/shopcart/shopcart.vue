@@ -13,7 +13,7 @@
         <div class="desc">另需配送费￥{{deliveryPrice}}元</div>
       </div>
       <div class="content-right">
-        <div class="pay" :class="{'highlight':totalPrice>minPrice}">{{payDesc}}</div>
+        <div class="pay" :class="{'highlight':totalPrice>=minPrice}">{{payDesc}}</div>
       </div>
     </div>
   </div>
@@ -26,10 +26,10 @@ export default {
       type: Array,
       default() {
         return [
-          {
-            price: 30,
-            count: 1
-          }
+          // {
+          //   price: 30,
+          //   count: 1
+          // }
         ]
       }
     },

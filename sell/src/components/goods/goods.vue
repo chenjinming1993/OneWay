@@ -39,7 +39,7 @@
         </li>
       </ul>
     </div>
-    <shopcart :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice"></shopcart>
+    <shopcart :select-foods="selectFoods" :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice"></shopcart>
   </div>
 </template>
 
@@ -86,6 +86,18 @@ export default {
         }
       }
       return 0
+    },
+    // selectFoods():遍历数据goods，获取选中的商品，数据中包含从cartcontrol组件中获得的单件商品选中数量
+    selectFoods() {
+      let foods = []
+      this.goods.forEach((good) => {
+        good.foods.forEach((food) => {
+          if (food.count) {
+            foods.push(food)
+          }
+        })
+      })
+      return foods
     }
   },
   methods: {
@@ -238,6 +250,6 @@ export default {
               text-decoration line-through
           .cartcontrol-wrapper
             position absolute
-            right 8px
-            bottom 16px
+            right 6px
+            bottom 10px
 </style>
