@@ -31,7 +31,7 @@
                   <span v-show="food.oldPrice" class="old">￥{{food.oldPrice}}</span>
                 </div>
                 <div class="cartcontrol-wrapper">
-                  <cartcontrol :food="food"></cartcontrol>
+                  <cartcontrol v-on:cart-add="cartAdd" :food="food"></cartcontrol>
                 </div>
               </div>
             </li>
@@ -39,7 +39,7 @@
         </li>
       </ul>
     </div>
-    <shopcart :select-foods="selectFoods" :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice"></shopcart>
+    <shopcart ref="shopcart" :select-foods="selectFoods" :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice"></shopcart>
   </div>
 </template>
 
@@ -138,6 +138,12 @@ export default {
       let menuList = this.$refs.menuWrapper.getElementsByClassName('menu-item')
       let ref = menuList[index]
       this.menuScroll.scrollToElement(ref, 300)
+    },
+    cartAdd(target) {
+      this.$nextTick(() => {
+        // console.log(target)
+        this.$refs.shopcart.drop(target)
+      })
     }
   },
   components: {

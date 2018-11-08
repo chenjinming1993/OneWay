@@ -23,6 +23,8 @@ export default {
       } else {
         this.food.count++
       }
+      // 设置滚动对象时，点击加号，设置一个派发事件，将DOM对象传出去,将target（DOM）作为cart.add事件的对象传入
+      this.$emit('cart-add', event.target) // $emit, $on, $off 分别来分发、监听、取消监听事件：
     },
     decreaseCart() {
       if (this.food.count > 0) {

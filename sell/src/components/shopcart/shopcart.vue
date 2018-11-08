@@ -15,6 +15,15 @@
       <div class="content-right">
         <div class="pay" :class="{'highlight':totalPrice>=minPrice}">{{payDesc}}</div>
       </div>
+      <div class="ball-container">
+        <div v-for="(ball,index) in balls" :key="index">
+          <transition name="drop" @before-enter="beroreEnter" @enter="enter" @after-enter="afterEnter">
+            <div v-show="ball.show" class="ball">
+              <div class="inner"></div>
+            </div>
+          </transition>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -44,6 +53,22 @@ export default {
   },
   data () {
     return {
+      balls: [{
+        show: false
+      },
+      {
+        show: false
+      },
+      {
+        show: false
+      },
+      {
+        show: false
+      },
+      {
+        show: false
+      }],
+      dropBalls: []
     }
   },
   computed: {
@@ -69,6 +94,56 @@ export default {
         return `还差￥${diff}起送`
       } else {
         return '去结算'
+      }
+    }
+  },
+  methods: {
+    drop(el) {
+      for (let i = 0; i < this.balls.length; i++) {
+        let ball = this.balls[i]
+        if (!ball.show) {
+          ball.show = true
+          ball.el = el // 保留当前的DOM对象，用来计算位置
+          // console.log(ball.el)
+          this.dropBalls.push(ball) // dropBalls存的是已经下落的小球,后续要对已经下落的小球进行处理
+          return
+        }
+      }
+    },
+    beroreEnter(el) {
+      let count = this.balls.length
+      while (count--) {
+        let ball = this.balls[count]
+        if (ball.show) {
+          let rect = ball.el.getBoundingClientRect(); // 获得元素相当于视口的位置
+          let x = rect.left - 32
+          let y = -(window.innerHeight - rect.top - 22)
+          el.style.display = ''
+          el.style.webkitTransform = `translate3d(0,${y}px,0)`
+          el.style.transform = `tranlate3d(0,${y}px,0)`
+          let inner = el.getElementsByClassName('inner')[0]
+          inner.style.webkitTransform = `translate3d(${x}px,0,0)`
+          inner.style.transform = `translate3d(${x}px,0,0)`
+        }
+      }
+    },
+    enter(el) {
+      /* 触发浏览器重绘，重绘之后才可以设置transform */
+      /* eslint-disable no-unused-vars */
+      let rf = el.offsetHeight
+      this.$nextTick(() => {
+        el.style.webKitTransform = 'translate3d(0,0,0)'
+        el.style.transform = 'translate3d(0,0,0)'
+        let inner = el.getElementsByClassName('inner')[0]
+        inner.style.webKitTransform = `translate3d(0,0,0)`
+        inner.style.transform = `translate3d(0,0,0)`
+      })
+    },
+    afterEnter(el) {
+      let ball = this.dropBalls.shift()
+      if (ball) {
+        ball.show = false
+        el.style.display = 'none'
       }
     }
   }
@@ -167,4 +242,18 @@ export default {
           &.highlight
             background #00b43c
             color white
+    .ball-container
+      .ball
+        position fixed
+        left 32px
+        bottom  22px
+        z-index 200
+        transition: all 0.6s cubic-bezier(0.49, -0.29, 0.75, 0.41)
+        // transition: all 0.6s cubic-bezier(.82,.07,.84,.78)
+        .inner
+          width 16px
+          height 16px
+          border-radius 50%
+          background rgb(0,160,220)
+          transition all 0.4s linear  //x轴做一个线性的过渡即可
 </style>
