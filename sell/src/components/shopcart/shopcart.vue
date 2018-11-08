@@ -110,11 +110,13 @@ export default {
         }
       }
     },
-    beroreEnter(el) {
+    // 定义三个钩子函数实现动画
+    beroreEnter(el) { // el为当前执行transition动画的DOM对象
+    // 先找到所有为true的小球（连续点击的情况）
       let count = this.balls.length
       while (count--) {
         let ball = this.balls[count]
-        if (ball.show) {
+        if (ball.show) { // 这个是要运动的小球true
           let rect = ball.el.getBoundingClientRect(); // 获得元素相当于视口的位置
           let x = rect.left - 32
           let y = -(window.innerHeight - rect.top - 22)
@@ -132,7 +134,7 @@ export default {
       /* eslint-disable no-unused-vars */
       let rf = el.offsetHeight
       this.$nextTick(() => {
-        el.style.webKitTransform = 'translate3d(0,0,0)'
+        el.style.webKitTransform = 'translate3d(0,0,0)' // 没有变量时只能用单引，不能用反引
         el.style.transform = 'translate3d(0,0,0)'
         let inner = el.getElementsByClassName('inner')[0]
         inner.style.webKitTransform = `translate3d(0,0,0)`
