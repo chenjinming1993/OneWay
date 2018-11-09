@@ -99,13 +99,19 @@ export default {
   },
   methods: {
     drop(el) {
+      // 遍历balls，拿到第一个show为false的球，做一个动画
       for (let i = 0; i < this.balls.length; i++) {
         let ball = this.balls[i]
+        // console.log(this.balls[i].show)
+        // console.log(this.balls[0].show)
+        // console.log(this.balls[1].show)
         if (!ball.show) {
           ball.show = true
           ball.el = el // 保留当前的DOM对象，用来计算位置
-          // console.log(ball.el)
           this.dropBalls.push(ball) // dropBalls存的是已经下落的小球,后续要对已经下落的小球进行处理
+          // console.log(this.balls[i].show)
+          // console.log(this.balls[0].show)
+          // console.log(this.balls[1].show)
           return
         }
       }
@@ -116,6 +122,7 @@ export default {
       let count = this.balls.length
       while (count--) {
         let ball = this.balls[count]
+        // console.log(this.balls[0].show)
         if (ball.show) { // 这个是要运动的小球true
           let rect = ball.el.getBoundingClientRect(); // 获得元素相当于视口的位置
           let x = rect.left - 32
@@ -124,8 +131,10 @@ export default {
           el.style.webkitTransform = `translate3d(0,${y}px,0)`
           el.style.transform = `tranlate3d(0,${y}px,0)`
           let inner = el.getElementsByClassName('inner')[0]
+          // console.log(inner)
           inner.style.webkitTransform = `translate3d(${x}px,0,0)`
           inner.style.transform = `translate3d(${x}px,0,0)`
+          // console.log(inner.style.transform)
         }
       }
     },
@@ -134,7 +143,7 @@ export default {
       /* eslint-disable no-unused-vars */
       let rf = el.offsetHeight
       this.$nextTick(() => {
-        el.style.webKitTransform = 'translate3d(0,0,0)' // 没有变量时只能用单引，不能用反引
+        el.style.webKitTransform = 'translate3d(0,0,0)' // 设置小球掉落后最终的位置
         el.style.transform = 'translate3d(0,0,0)'
         let inner = el.getElementsByClassName('inner')[0]
         inner.style.webKitTransform = `translate3d(0,0,0)`
@@ -142,7 +151,7 @@ export default {
       })
     },
     afterEnter(el) {
-      let ball = this.dropBalls.shift()
+      let ball = this.dropBalls.shift() // 完成一次动画就删除一个dropBalls的小球
       if (ball) {
         ball.show = false
         el.style.display = 'none'
