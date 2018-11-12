@@ -2,7 +2,7 @@
 <template>
   <div class="shopcart">
     <div class="content_sc">
-      <div class="content-left">
+      <div class="content-left" @click="toggleList">
         <div class="logo-wrapper">
           <div class="logo" :class="{'highlight':totalCount>0}">
             <i class="icon-shopping_cart" :class="{'highlight':totalCount>0}"></i>
@@ -24,11 +24,31 @@
           </transition>
         </div>
       </div>
+      <div class="shopcart-list" v-show="listShow">
+        <div class="list-header">
+          <div class="title"></div>
+          <div class="empty"></div>
+        </div>
+        <div class="list-content">
+          <ul>
+            <li v-for="(food,index) in selectFoods" :key="index">
+              <h2 class="name">{{food.name}}</h2>
+              <div class="price">
+                <span>￥{{food.price*food.count}}</span>
+              </div>
+              <div class="cartcontrol-wrapper">
+                  <cartcontrol :food="food"></cartcontrol>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import cartcontrol from '../../components/cartcontrol/cartcontrol'
 export default {
   props: {
     selectFoods: {
@@ -68,7 +88,8 @@ export default {
       {
         show: false
       }],
-      dropBalls: []
+      dropBalls: [],
+      fold: true
     }
   },
   computed: {
@@ -95,6 +116,14 @@ export default {
       } else {
         return '去结算'
       }
+    },
+    listShow() { // 决定是否可以显示已选商品列表
+      if (!this.totalCount) {
+        this.fold = true
+        return false
+      }
+      let show = !this.fold
+      return show
     }
   },
   methods: {
@@ -115,6 +144,12 @@ export default {
           return
         }
       }
+    },
+    toggleList() { // 用户打开或关闭已选商品列表
+      if (!this.totalCount) {
+        return
+      }
+      this.fold = !this.fold
     },
     // 定义三个钩子函数实现动画
     beroreEnter(el) { // el为当前执行transition动画的DOM对象
@@ -157,11 +192,14 @@ export default {
         el.style.display = 'none'
       }
     }
+  },
+  components: {
+    cartcontrol
   }
 }
 
 </script>
-<style lang="stylus" rel="stylesheet/stylus">
+<style lang="stylus" rel="stylesheet/stylus" scoped>
   .shopcart
     position: fixed
     left 0
@@ -253,18 +291,26 @@ export default {
           &.highlight
             background #00b43c
             color white
-    .ball-container
-      .ball
-        position fixed
-        left 32px
-        bottom  22px
-        z-index 200
-        transition: all 0.6s cubic-bezier(0.49, -0.29, 0.75, 0.41)
-        // transition: all 0.6s cubic-bezier(.82,.07,.84,.78)
-        .inner
-          width 16px
-          height 16px
-          border-radius 50%
-          background rgb(0,160,220)
-          transition all 0.4s linear  //x轴做一个线性的过渡即可
+      .ball-container
+        .ball
+          position fixed
+          left 32px
+          bottom  22px
+          z-index 200
+          transition: all 0.6s cubic-bezier(0.49, -0.29, 0.75, 0.41)
+          // transition: all 0.6s cubic-bezier(.82,.07,.84,.78)
+          .inner
+            width 16px
+            height 16px
+            border-radius 50%
+            background rgb(0,160,220)
+            transition all 0.4s linear  //x轴做一个线性的过渡即可
+      .shopcart-list
+        position absolute
+        left 0
+        top 0
+        width 100%
+        height 305px
+        z-index 100
+        background pink
 </style>
