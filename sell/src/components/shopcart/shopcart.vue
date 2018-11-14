@@ -12,7 +12,7 @@
         <div class="price" :class="{'highlight':totalPrice>0}">￥{{totalPrice}}</div>
         <div class="desc">另需配送费￥{{deliveryPrice}}元</div>
       </div>
-      <div class="content-right">
+      <div class="content-right" @click="pay">
         <div class="pay" :class="{'highlight':totalPrice>=minPrice}">{{payDesc}}</div>
       </div>
       <div class="ball-container">
@@ -46,6 +46,9 @@
         </div>
       </transition>
     </div>
+    <transition name="fadeBG">
+      <div class="list-mask" v-show="listShow" @click="hideList"></div>
+    </transition>
   </div>
 </template>
 
@@ -92,7 +95,7 @@ export default {
         show: false
       }],
       dropBalls: [],
-      fold: true
+      fold: true // 购物车详情列表默认折叠。ture时隐藏，false时显示
     }
   },
   computed: {
@@ -166,6 +169,15 @@ export default {
       this.selectFoods.forEach((food) => {
         food.count = 0
       })
+    },
+    hideList() {
+      this.fold = true
+    },
+    pay() {
+      if (this.totalPrice < this.minPrice) {
+        return
+      }
+      alert(`请支付${this.totalPrice}元`)
     },
     // 定义三个钩子函数实现动画
     beroreEnter(el) { // el为当前执行transition动画的DOM对象
@@ -377,4 +389,22 @@ export default {
               position absolute
               right 0
               bottom 6px
+    .list-mask
+      position fixed
+      top 0
+      left 0
+      width 100%
+      height 100%
+      z-index -2
+      background rgba(7,17,27,0.6)
+      backdrop-filter blur(10px) // 模糊效果
+      -webkit-backdrop-filter blur(10px)
+      opacity 1
+      &.fadeBG-enter-active, &.fadeBG-leave-active
+        opacity 1
+        transition all 0.5s
+        background rgba(7,17,27,0.6)
+      &.fadeBG-enter, &.fadeBG-leave-to
+        opacity 0
+        background rgba(7,17,27,0)
 </style>
