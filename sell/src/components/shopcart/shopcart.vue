@@ -395,7 +395,7 @@ export default {
       left 0
       width 100%
       height 100%
-      z-index -2
+      z-index -10
       background rgba(7,17,27,0.6)
       backdrop-filter blur(10px) // 模糊效果
       -webkit-backdrop-filter blur(10px)
