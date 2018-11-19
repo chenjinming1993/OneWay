@@ -1,6 +1,10 @@
 <!--  -->
 <template>
-  <div class="foodDetail" v-show="showFlag"></div>
+  <transition name="fadeFoodDetail">
+    <div class="foodDetail" v-show="showFlag" @click="showFlag=false">
+      你好么!
+    </div>
+  </transition>
 </template>
 
 <script>
@@ -24,6 +28,11 @@ export default {
 
 </script>
 <style lang='stylus' scoped>
+  .fadeFoodDetail-enter-active, .fadeFoodDetail-leave-active
+    transition all 0.3s linear
+  .fadeFoodDetail-enter, .fadeFoodDetail-leave-to
+    transform translateX(100%)
+    opacity 0
   .foodDetail
     position fixed
     top 0
