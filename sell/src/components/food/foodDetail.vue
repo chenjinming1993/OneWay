@@ -1,8 +1,13 @@
 <!--  -->
 <template>
   <transition name="fadeFoodDetail">
-    <div class="foodDetail" v-show="showFlag" @click="showFlag=false">
-      你好么!
+    <div class="foodDetail" v-show="showFlag">
+      <div class="image-header">
+        <img :src="food.image">
+        <div class="back" @click="showFlag=false">
+          <i class="icon-arrow_lift"></i>
+        </div>
+      </div>
     </div>
   </transition>
 </template>
@@ -41,4 +46,28 @@ export default {
     height 100%
     z-index 40
     background #fff
+  .image-header
+    position relative
+    width 100%
+    height auto // 从 0 改为 auto，避免图片拉伸
+    padding-top 100%
+    img
+      position absolute
+      top 0
+      left 0
+      width 100%
+      height auto
+    .back
+      position absolute
+      top 10px
+      left 5px
+      height: 24px
+      line-height: 24px
+      border-radius: 7px
+      background rgba(20,29,39,0.3)
+      text-align: center
+      .icon-arrow_lift
+        padding 10px
+        font-size: 16px
+        vertical-align top
 </style>
