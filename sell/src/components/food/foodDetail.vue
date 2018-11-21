@@ -1,7 +1,7 @@
 <!--  -->
 <template>
   <transition name="fadeFoodDetail">
-    <div class="foodDetail" v-show="showFlag">
+    <div class="foodDetail" v-show="showFlag" ref="foodBS">
       <div class="food-content">
         <div class="image-header">
           <img :src="food.image">
@@ -20,12 +20,35 @@
             <span v-show="food.oldPrice" class="old_fd">￥{{food.oldPrice}}</span>
           </div>
         </div>
+        <div class="test">
+          <div>1233554977</div>
+          <div>1233554977</div>
+          <div>1233554977</div>
+          <div>1233554977</div>
+          <div>1233554977</div>
+          <div>1233554977</div>
+          <div>1233554977</div>
+          <div>1233554977</div>
+          <div>1233554977</div>
+          <div>1233554977</div>
+          <div>1233554977</div>
+          <div>1233554977</div>
+          <div>1233554977</div>
+          <div>1233554977</div>
+          <div>1233554977</div>
+          <div>1233554977</div>
+          <div>1233554977</div>
+          <div>1233554977</div>
+          <div>1233554977</div>
+          <div>1233554977</div>
+        </div>
       </div>
     </div>
   </transition>
 </template>
 
 <script>
+import BScroll from 'better-scroll'
 export default {
   props: {
     food: {
@@ -40,6 +63,15 @@ export default {
   methods: {
     show() {
       this.showFlag = true
+      this.$nextTick(() => {
+        if (!this.scroll) {
+          this.scroll = new BScroll(this.$refs.foodBS, {
+            click: true
+          })
+        } else {
+          this.scroll.refresh()
+        }
+      })
     }
   }
 }
@@ -64,14 +96,14 @@ export default {
       .image-header
         position relative
         width 100%
-        height auto // 从 0 改为 auto，避免图片拉伸
+        height 0 // 从 0 改为 auto，避免图片拉伸
         padding-top 100%
         img
           position absolute
           top 0
           left 0
           width 100%
-          height auto
+          height 100%
         .back
           position absolute
           top 10px
