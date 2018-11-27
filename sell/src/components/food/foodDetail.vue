@@ -64,7 +64,7 @@ export default {
       })
     },
     addFirst() {
-      Vue.set(this.food, 'count', 1)
+      Vue.set(this.food, 'count', 1) // 为单件商品添加'count'(选中商品数量)数据。第一次时数据中没有count属性
     }
   },
   components: {
