@@ -24,7 +24,7 @@
           <div class="cart-wrapper">
             <cartcontrol :food="food"></cartcontrol>
           </div>
-          <div class="addShop" v-show="!food.count || food.count===0">加入购物车</div>
+          <div class="addShop" v-show="!food.count || food.count===0" @click="addFirst">加入购物车</div>
         </div>
         <div class="info-wrapper">
           <h2 class="info-title">商品介绍</h2>
@@ -36,6 +36,7 @@
 </template>
 
 <script>
+import Vue from 'vue'
 import BScroll from 'better-scroll'
 import cartcontrol from '../../components/cartcontrol/cartcontrol'
 export default {
@@ -61,6 +62,9 @@ export default {
           this.scroll.refresh()
         }
       })
+    },
+    addFirst() {
+      Vue.set(this.food, 'count', 1)
     }
   },
   components: {
