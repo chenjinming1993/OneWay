@@ -26,7 +26,7 @@
           </div>
           <div class="addShop" v-show="!food.count || food.count===0" @click="addFirst">加入购物车</div>
         </div>
-        <div class="info-wrapper">
+        <div class="info-wrapper" v-show="food.info">
           <h2 class="info-title">商品介绍</h2>
           <div class="info">{{food.info}}</div>
         </div>
