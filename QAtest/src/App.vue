@@ -1,23 +1,35 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <router-view/>
+    <qaHeader></qaHeader>
+    <div class="tab border-1px">
+      <div class="tab-item"><router-link to="/architecture">建筑</router-link></div>
+      <!-- <div class="tab-item"><router-link to="">兵种</router-link></div> -->
+      <!-- <div class="tab-item"><router-link to="">待定</router-link></div> -->
+    </div>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
+import qaHeader from './components/qaHeader/qaHeader'
+
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    qaHeader
+  }
 }
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style lang='stylus' scoped>
+  @import "./common/stylus/mixin.styl"
+  .tab
+    display: flex
+    width: 100%;
+    height: 40px
+    line-height: 40px
+    border-1px(rgba(7, 17, 27, 0.1))
+    .tab-item
+      flex: 1;
+      text-align: center;
 </style>
