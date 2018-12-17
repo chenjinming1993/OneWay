@@ -17,9 +17,10 @@ export default {
     }
   },
   created() {
+    var _this = this
     this.$axios.get('/api/name', {}).then(function (response) {
       response.data.forEach(function(item, index) {
-        this.users.push({
+        _this.users.push({
           'name': item.name
         })
       })
