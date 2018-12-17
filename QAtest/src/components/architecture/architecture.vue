@@ -16,6 +16,7 @@
         {{user.cost_time}}
       </li>
     </ul>
+    {{users[0]}}
   </div>
 </template>
 
