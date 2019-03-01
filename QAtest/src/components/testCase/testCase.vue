@@ -1,7 +1,7 @@
 <!--  -->
 <template>
-  <div>
-    1111111
+  <div class="testCase">
+    <table></table>
   </div>
 </template>
 
@@ -15,4 +15,12 @@ export default {
 
 </script>
 <style lang='stylus' scoped>
+  .testCase
+    position fixed
+    top 0
+    left 0
+    width 100%
+    height 100%
+    z-index 10
+    background #fff
 </style>
