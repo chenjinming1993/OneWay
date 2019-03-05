@@ -9,12 +9,12 @@
         style="width: 100%">
         <el-table-column
           prop="tests"
-          label="测试点"
+          label="tests"
           width="180">
         </el-table-column>
         <el-table-column
           prop="result"
-          label="测试结果"
+          label="result"
           width="180">
         </el-table-column>
         <el-table-column
@@ -22,8 +22,11 @@
           label="地址">
         </el-table-column>
       </el-table>
-      <div>添加</div>
-      <el-input v-model="input" placeholder="请输入内容"></el-input>
+      <div class="addTest">
+        <el-tag>添加</el-tag>
+        <el-input v-model="inputValue" placeholder="请输入内容"></el-input>
+        <el-button class="inputAdd" type="primary" @click="handleSubmit">提交</el-button>
+      </div>
     </div>
   </div>
 </template>
@@ -42,7 +45,21 @@ export default {
         result: '王小虎',
         address: '上海市普陀区金沙江路 1518 弄'
       }],
-      input: ''
+      inputValue: '',
+      inputTest: {}
+    }
+  },
+  methods: {
+    handleSubmit(){
+      if(this.inputValue == '') {
+        alert('请输入信息')
+        return
+      }
+      this.inputTest.tests = this.inputValue
+      this.tableData3.push(this.inputTest)
+      console.log(this.tableData3)
+      this.inputTest = {}
+      this.inputValue = ''
     }
   }
 }
@@ -61,4 +78,8 @@ export default {
       width 800px
       height auto
       margin 0 auto
+      .addTest
+        .inputAdd
+          font-size 10px
+          padding 8px 12px
 </style>

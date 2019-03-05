@@ -3,7 +3,8 @@
     <qaHeader></qaHeader>
     <div class="tab border-1px">
       <div class="tab-item"><router-link to="/architecture">建筑</router-link></div>
-      <div class="tab-item"><router-link target="_blank" to="/testCase">测试用例</router-link></div>
+      <div class="tab-item"><router-link target="_blank" to="/testCase">测试用例</router-link></div> 
+      <div class="tab-item"><router-link target="_blank" to="/test">测试用例样板试验</router-link></div> 
       <!-- <div class="tab-item"><router-link to="">待定</router-link></div> -->
     </div>
     <router-view></router-view>
