@@ -6,7 +6,8 @@
         :data="tableData3"
         height="250"
         border
-        style="width: 100%">
+        style="width: 100%"
+        :row-class-name="tableRowClassName">
         <el-table-column
           prop="tests"
           label="tests"
@@ -20,6 +21,15 @@
         <el-table-column
           prop="address"
           label="地址">
+        </el-table-column>
+        <el-table-column
+          fixed="right"
+          label="操作"
+          width="100">
+          <template slot-scope="scope">
+            <el-button @click="handleClick(scope.row)" type="text" size="small">查看</el-button>
+            <el-button type="text" size="small">编辑</el-button>
+          </template>
         </el-table-column>
       </el-table>
       <div class="addTest">
@@ -50,8 +60,8 @@ export default {
     }
   },
   methods: {
-    handleSubmit(){
-      if(this.inputValue == '') {
+    handleSubmit() {
+      if (this.inputValue === '') {
         alert('请输入信息')
         return
       }
@@ -60,6 +70,15 @@ export default {
       console.log(this.tableData3)
       this.inputTest = {}
       this.inputValue = ''
+    },
+    handleClick(row) {
+      console.log(row)
+      if (row.address === 'OK') {
+        alert('OK')
+      }
+    },
+    tableRowClassName({row, rowIndex}) { // 如何改变行的样式？
+      return 'background:red'
     }
   }
 }
