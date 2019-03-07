@@ -75,7 +75,7 @@ export default {
       console.log(row)
       row.result = 'OK'
     },
-    testsOk({row,rowIndex}) { // 如何改变行的样式？(3月7日成功实现)
+    testsOk({row, rowIndex}) { // 如何改变行的样式？(3月7日成功实现)
       if (row.result === 'OK') {
         return 'background:green'
       }
