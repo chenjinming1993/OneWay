@@ -7,7 +7,7 @@
         height="250"
         border
         style="width: 100%"
-        :row-class-name="tableRowClassName">
+        :row-style="testsOk">
         <el-table-column
           prop="tests"
           label="tests"
@@ -27,7 +27,7 @@
           label="操作"
           width="100">
           <template slot-scope="scope">
-            <el-button @click="handleClick(scope.row)" type="text" size="small">查看</el-button>
+            <el-button @click="handleClick(scope.row)" type="text" size="small">通过</el-button>
             <el-button type="text" size="small">编辑</el-button>
           </template>
         </el-table-column>
@@ -73,12 +73,13 @@ export default {
     },
     handleClick(row) {
       console.log(row)
-      if (row.address === 'OK') {
-        alert('OK')
-      }
+      row.result = 'OK'
     },
-    tableRowClassName({row, rowIndex}) { // 如何改变行的样式？
-      return 'background:red'
+    testsOk({row,rowIndex}) { // 如何改变行的样式？(3月7日成功实现)
+      if (row.result === 'OK') {
+        return 'background:green'
+      }
+      return ''
     }
   }
 }
