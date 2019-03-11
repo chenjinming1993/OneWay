@@ -28,7 +28,7 @@
           width="100">
           <template slot-scope="scope">
             <el-button @click="handleClick(scope.row)" type="text" size="small">通过</el-button>
-            <el-button type="text" size="small">编辑</el-button>
+            <el-button @click="handleClick2(scope.row)" type="text" size="small">编辑</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -75,9 +75,15 @@ export default {
       console.log(row)
       row.result = 'OK'
     },
+    handleClick2(row) {
+      console.log(row)
+      row.result = 'noOK'
+    },
     testsOk({row, rowIndex}) { // 如何改变行的样式？(3月7日成功实现)
       if (row.result === 'OK') {
-        return 'background:green'
+        return 'background:pink'
+      } else if (row.result === 'noOK') {
+        return 'background:red'
       }
       return ''
     }
