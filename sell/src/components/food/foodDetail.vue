@@ -30,6 +30,10 @@
           <h2 class="info-title">商品介绍</h2>
           <div class="info">{{food.info}}</div>
         </div>
+        <div class="rating">
+          <h1 class="title">商品评价</h1>
+          <ratingselect :select-type="selectType" :only-content="onlyContent" :desc="desc" :ratings="food.ratings"></ratingselect>
+        </div>
       </div>
     </div>
   </transition>
@@ -39,6 +43,10 @@
 import Vue from 'vue'
 import BScroll from 'better-scroll'
 import cartcontrol from '../../components/cartcontrol/cartcontrol'
+import ratingselect from '../../components/ratingselect/ratingselect'
+// const POSITIVE = 0
+// const NEGATIVE = 1
+const ALL = 2
 export default {
   props: {
     food: {
@@ -47,12 +55,21 @@ export default {
   },
   data () {
     return {
-      showFlag: false
+      showFlag: false,
+      selectType: ALL,
+      onlyContent: true,
+      desc: {
+        all: '全部',
+        positive: '推荐',
+        negative: '吐槽'
+      }
     }
   },
   methods: {
     show() {
       this.showFlag = true
+      this.selectType = ALL
+      this.onlyContent = true
       this.$nextTick(() => {
         if (!this.scroll) {
           this.scroll = new BScroll(this.$refs.foodBS, {
@@ -68,7 +85,8 @@ export default {
     }
   },
   components: {
-    cartcontrol
+    cartcontrol,
+    ratingselect
   }
 }
 
@@ -175,4 +193,11 @@ export default {
           font-weight 200
           color rgb(77,85,93)
           line-height 24px
+      .rating
+        margin-top 16px
+        border-top 1px solid rgba(7, 17, 27, 0.1)
+        .title
+          margin 18px 0 6px 18px
+          font-size 15px
+          font-weight 550
 </style>
