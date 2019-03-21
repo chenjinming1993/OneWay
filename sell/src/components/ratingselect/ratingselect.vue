@@ -47,6 +47,8 @@ export default {
   },
  data () {
    return {
+     stype: this.selectType,
+     ocontent: this.onlyContent
    }
  },
  computed: {
@@ -66,15 +68,15 @@ export default {
      if (!event._constructed) {
        return
      }
-     this.selectType = type
-     this.$emit('ratingtype.select', type)
+     this.stype = type
+     this.$emit('ratingevent', 'selectType', this.stype)
    },
    toggleContent(event) {
      if (!event._constructed) {
        return
      }
-     this.onlyContent = !this.onlyContent
-     this.$emit('content.toggle', this.onlyContent)
+     this.ocontent = !this.ocontent
+     this.$emit('ratingevent', 'onlyContent', this.ocontent)
     //  https://www.jianshu.com/p/7f426c2a3eda
    }
  }

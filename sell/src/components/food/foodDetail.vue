@@ -32,7 +32,7 @@
         </div>
         <div class="rating">
           <h1 class="title">商品评价</h1>
-          <ratingselect :select-type="selectType" :only-content="onlyContent" :desc="desc" :ratings="food.ratings"></ratingselect>
+          <ratingselect @ratingevent="ratingevent" :select-type="selectType" :only-content="onlyContent" :desc="desc" :ratings="food.ratings"></ratingselect>
           <div class="rating-wrapper">
             <ul v-show="food.ratings && food.ratings.length">
               <li v-for="(rating,index) in food.ratings" :key="index" class="rating-item">
@@ -97,6 +97,12 @@ export default {
     },
     addFirst() {
       Vue.set(this.food, 'count', 1) // 为单件商品添加'count'(选中商品数量)数据。第一次时数据中没有count属性
+    },
+    ratingevent(type, data) {
+      this[type] = data
+      this.$nextTick(() => {
+        this.scroll.refresh()
+      })
     }
   },
   components: {
