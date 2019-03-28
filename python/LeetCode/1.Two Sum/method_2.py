@@ -20,10 +20,10 @@ class Solution(object):
         """
         l = len(nums)
         for i in range(l):
-            for j in range(l):
-                if i != j and target == nums[i] + nums[j]:
-                    return [i, j]
+            result = target - nums[i]
+            if result in nums and nums.index(result) != i:
+                return [i,nums.index(result)]
 
 
-# 执行用时 : 6916 ms, 在Two Sum的Python提交中击败了3.84% 的用户
-# 内存消耗 : 12.7 MB, 在Two Sum的Python提交中击败了0.96% 的用户
+# 执行用时 : 1196 ms, 在Two Sum的Python提交中击败了51.97% 的用户
+# 内存消耗 : 12.6 MB, 在Two Sum的Python提交中击败了0.96% 的用户
