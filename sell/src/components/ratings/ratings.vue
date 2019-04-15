@@ -29,11 +29,11 @@
         <ratingselect :select-type="selectType" :only-content="onlyContent" :ratings="ratings"></ratingselect>
         <div class="rating-wrapper">
           <ul>
-            <li v-for="(rating,index) in ratings" :key="index">
+            <li v-for="(rating,index) in ratings" :key="index" class="rating-item">
               <div class="avatar">
                 <img :src="rating.avatar" alt="" width="28px" height="28px">
               </div>
-              <div class="content">
+              <div class="content_r">
                 <h1 class="name">{{rating.username}}</h1>
                 <div class="star-wrapper">
                   <star :size="24" :score="rating.score"></star>
@@ -103,6 +103,7 @@ export default {
 
 </script>
 <style lang='stylus' scoped>
+  @import "../../common/stylus/mixin.styl"
   .ratings
     position absolute
     top 174px
@@ -172,4 +173,20 @@ export default {
             line-height 18px
             color rgb(147,153,159)
             vertical-align top
+    .rating-detail
+      .rating-wrapper
+        padding 0 18px
+        .rating-item
+          display flex
+          padding 18px 0
+          border-1px(rgba(7, 17, 27, 0.1))
+          .avatar
+            flex 0 0 28px
+            width 28px
+            margin-right 12px
+            img
+              border-radius 50%
+          .content_r
+            position relative
+            flex 1
 </style>
