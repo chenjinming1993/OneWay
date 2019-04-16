@@ -26,20 +26,20 @@
         </div>
       </div>
       <div class="rating-detail">
-        <ratingselect :select-type="selectType" :only-content="onlyContent" :ratings="ratings"></ratingselect>
+        <ratingselect @ratingevent="ratingevent" :select-type="selectType" :only-content="onlyContent" :ratings="ratings"></ratingselect>
         <div class="rating-wrapper">
           <ul>
-            <li v-for="(rating,index) in ratings" :key="index" class="rating-item">
+            <li v-for="(rating,index) in ratings" :key="index" class="rating-item" v-show="needShow(rating.rateType, rating.text)">
               <div class="avatar">
                 <img :src="rating.avatar" alt="" width="28px" height="28px">
               </div>
               <div class="content_r">
-                <h1 class="name">{{rating.username}}</h1>
-                <div class="star-wrapper">
+                <h1 class="name_r">{{rating.username}}</h1>
+                <div class="star-wrapper_r">
                   <star :size="24" :score="rating.score"></star>
                   <span class="delivery" v-show="rating.deliveryTime">{{rating.deliveryTime}}分钟送达</span>
                 </div>
-                <p class="text">{{rating.text}}</p>
+                <p class="text_r">{{rating.text}}</p>
                 <div class="recommend" v-show="rating.recommend && rating.recommend.length">
                   <i class="icon-thumb_up"></i>
                   <span class="item" v-for="(item,index) in rating.recommend" :key="index">{{item}}</span>
@@ -71,7 +71,7 @@ export default {
   data () {
     return {
       ratings: [],
-      // showFlag: false,
+      showFlag: false,
       selectType: ALL,
       onlyContent: true
     }
@@ -88,6 +88,24 @@ export default {
         })
       }
     })
+  },
+  methods: {
+    ratingevent(type, data) {
+      this[type] = data
+      this.$nextTick(() => {
+        this.scroll.refresh()
+      })
+    },
+    needShow(type, text) {
+      if (this.onlyContent && !text) {
+        return false
+      }
+      if (this.selectType === 2) {
+        return true
+      } else {
+        return type === this.selectType
+      }
+    }
   },
   filters: {
     formatDate(time) {
@@ -189,4 +207,52 @@ export default {
           .content_r
             position relative
             flex 1
+            .name_r
+              font-size 10px
+              margin-bottom 4px
+              line-height 12px
+              color rgb(7,17,27)
+              font-weight 700
+            .star-wrapper_r
+              margin-bottom 6px
+              font-size 0px
+              .star
+                display inline-block
+                margin-right 6px
+                vertical-align top
+              .delivery
+                display inline-block
+                font-size 10px
+                line-height 12px
+                color rgb(147,153,159)
+                vertical-align top
+            .text_r
+              font-size 12px
+              line-height 18px
+              color rgb(7,17,27)
+              margin-bottom 8px
+              font-weight 600
+            .recommend
+              line-height 16px
+              font-size 0
+              .icon-thumb_up, .item
+                display inline-block
+                margin 0 8px 4px 0
+                font-size 9px
+              .icon-thumb_up
+                color rgb(0, 160, 220)
+              .item
+                padding 0 6px
+                border 1px solid rgba(7,17,27,0.1)
+                border-radius 1px
+                color rgb(147,153,159)
+                background #fff
+            .time
+              position absolute
+              top 0
+              right 0
+              font-size 10px
+              line-height 12px
+              color rgb(147,153,159)
+              font-weight 200
 </style>
