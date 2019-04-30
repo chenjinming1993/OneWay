@@ -1,6 +1,6 @@
 <!--  -->
 <template>
-  <div class="seller">
+  <div class="seller" ref="seller">
     <div class="seller-content">
       <div class="overview">
         <h1 class="title">{{seller.name}}</h1>
@@ -41,7 +41,7 @@
 </template>
 
 <script>
-// import BScroll from 'better-scroll'
+import BScroll from 'better-scroll'
 import star from '../../components/star/star'
 export default {
   props: {
@@ -55,6 +55,25 @@ export default {
   },
   created() {
     this.classMap = ['decrease', 'discount', 'special', 'invoice', 'guarantee']
+  },
+  watch: {
+    'seller'() {
+      this._initScroll()
+    }
+  },
+  mounted () { // vue2.0中一个vue实例的生命周期中已经不存在 ready() 了, 可以使用 mounted()
+    this._initScroll()
+  },
+  methods: {
+    _initScroll() {
+      if (!this.scroll) {
+        this.scroll = new BScroll(this.$refs.seller, {
+          click: true
+        })
+      } else {
+        this.scroll.refresh()
+      }
+    }
   },
   components: {
     star
@@ -136,6 +155,8 @@ export default {
         .supports-item
           padding 16px 12px
           border-1px(rgba(7,17,27,0.1))
+          &:last-child
+            border-none()
           .icon
             display inline-block
             width 16px
